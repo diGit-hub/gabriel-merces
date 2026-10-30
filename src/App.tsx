@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, ConfigProvider, Segmented, Typography } from 'antd';
-import { MailOutlined } from '@ant-design/icons';
+import { GlobalOutlined, MailOutlined } from '@ant-design/icons';
 import enUS from 'antd/locale/en_US';
 import ptBR from 'antd/locale/pt_BR';
 import Hero from './components/Hero';
@@ -27,28 +27,47 @@ export default function App() {
 
   return (
     <ConfigProvider locale={locale === 'pt' ? ptBR : enUS}>
-      <div className="mx-auto max-w-[1200px] px-5 min-[601px]:px-6 min-[801px]:px-10">
-        <header className="flex h-[72px] items-center justify-between border-b border-[#f0f0f0] min-[601px]:h-20">
-          <Typography.Text strong>Gabriel Mercês</Typography.Text>
-          <nav aria-label={locale === 'pt' ? 'Navegação principal' : 'Main navigation'} className="flex items-center gap-1 min-[601px]:gap-4">
-            <Button type="text" href="#projetos">{text.nav}</Button>
-            <Segmented<Locale> options={[{ label: 'PT', value: 'pt' }, { label: 'EN', value: 'en' }]} value={locale} onChange={setLocale} aria-label={locale === 'pt' ? 'Idioma' : 'Language'} />
-          </nav>
+      <div className="page-container">
+        <header className="flex h-18 items-center justify-between border-b border-[#f0f0f0] min-[601px]:h-20">
+          <Typography.Text strong className="text-2xl!">Gabriel Mercês</Typography.Text>
+          <div className="flex items-center gap-2">
+            <GlobalOutlined aria-hidden="true" className="text-base text-neutral-500" />
+            <div
+              role="button"
+              tabIndex={0}
+              aria-label={locale === 'pt' ? 'Idioma: português. Alternar para inglês.' : 'Language: English. Switch to Portuguese.'}
+              className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677ff]"
+              onClick={() => setLocale(current => current === 'pt' ? 'en' : 'pt')}
+              onKeyDown={event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  if (!event.repeat) setLocale(current => current === 'pt' ? 'en' : 'pt');
+                }
+              }}
+            >
+              <div inert aria-hidden="true" className="pointer-events-none">
+                <Segmented<Locale>
+                  options={[{ label: 'PT', value: 'pt' }, { label: 'EN', value: 'en' }]}
+                  value={locale}
+                />
+              </div>
+            </div>
+          </div>
         </header>
         <main>
           <Hero text={text} />
           <ProjectsSection text={text} locale={locale} onSelect={setSelectedProject} />
           <section className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-[#f0f0f0] py-8 min-[801px]:flex-row min-[801px]:items-center">
             <div>
-              <Typography.Title level={3} className="!m-0">{text.cta}</Typography.Title>
-              <Typography.Paragraph type="secondary" className="!mb-0 !mt-2">{text.ctaText}</Typography.Paragraph>
+              <Typography.Title level={3} className="m-0!">{text.cta}</Typography.Title>
+              <Typography.Paragraph type="secondary" className="mb-0! mt-2!">{text.ctaText}</Typography.Paragraph>
             </div>
             <Button type="primary" href="mailto:gabriel.merces.dev@gmail.com" icon={<MailOutlined />}>{text.contact}</Button>
           </section>
         </main>
         <footer className="flex flex-col justify-between gap-2 border-t border-[#f0f0f0] py-6 min-[601px]:flex-row min-[601px]:gap-4">
-          <Typography.Text type="secondary" className="!text-xs">© 2026 Gabriel Mercês</Typography.Text>
-          <Typography.Text type="secondary" className="!text-xs">{text.footer}</Typography.Text>
+          <Typography.Text type="secondary" className="text-xs!">© 2026 Gabriel Mercês</Typography.Text>
+          <Typography.Text type="secondary" className="text-xs!">{text.footer}</Typography.Text>
         </footer>
       </div>
       {selectedProject !== null && (

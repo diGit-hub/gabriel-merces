@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+:root {
+  /* Shared alignment for header, hero, projects and footer. */
+  --page-content-max: 70rem;
+  --page-gutter: clamp(1.25rem, 6vw, 5.5rem);
+}
+
+.page-container {
+  width: min(calc(100% - 2 * var(--page-gutter)), var(--page-content-max));
+  margin-inline: auto;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 32px;

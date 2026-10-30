@@ -8,7 +8,12 @@ export default function Hero({ text }: { text: Copy }) {
   return (
     <section className="grid items-center gap-6 py-8 min-[601px]:grid-cols-[160px_minmax(0,1fr)] min-[601px]:gap-8 min-[601px]:py-12 min-[801px]:grid-cols-[192px_minmax(0,1fr)] min-[801px]:gap-12">
       <div className="flex justify-start min-[601px]:justify-center">
-        <Avatar src={photo} alt={text.photo} className="!size-28 min-[601px]:!size-40 min-[801px]:!size-48" />
+        <div className="relative isolate size-28 min-[601px]:size-40 min-[801px]:size-48">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -translate-x-0.5 translate-y-0.5 brightness-[0.45]">
+            <Avatar src={photo} alt="" className="size-full!" />
+          </div>
+          <Avatar src={photo} alt={text.photo} className="relative size-full!" />
+        </div>
       </div>
       <div>
         <Typography.Text type="secondary">{text.role}</Typography.Text>
