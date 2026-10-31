@@ -28,9 +28,9 @@ export default function App() {
   return (
     <ConfigProvider locale={locale === 'pt' ? ptBR : enUS}>
       <div className="page-container">
-        <header className="flex h-18 items-center justify-between border-b border-[#f0f0f0] min-[601px]:h-20">
-          <Typography.Text strong className="text-2xl!">Gabriel Mercês</Typography.Text>
-          <div className="flex items-center gap-2">
+        <header className="section-inset flex min-h-20 items-center justify-between gap-4 border-b border-[#f0f0f0] py-4">
+          <Typography.Text strong className="text-xl! min-[601px]:text-2xl!">Gabriel Mercês</Typography.Text>
+          <div className="flex shrink-0 items-center gap-2">
             <GlobalOutlined aria-hidden="true" className="text-base text-neutral-500" />
             <div
               role="button"
@@ -57,7 +57,7 @@ export default function App() {
         <main>
           <Hero text={text} />
           <ProjectsSection text={text} locale={locale} onSelect={setSelectedProject} />
-          <section className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-[#f0f0f0] py-8 min-[801px]:flex-row min-[801px]:items-center">
+          <section className="section-inset contact-section flex flex-col items-start justify-between gap-6 border-t border-[#f0f0f0] min-[801px]:flex-row min-[801px]:items-center">
             <div>
               <Typography.Title level={3} className="m-0!">{text.cta}</Typography.Title>
               <Typography.Paragraph type="secondary" className="mb-0! mt-2!">{text.ctaText}</Typography.Paragraph>
@@ -65,7 +65,7 @@ export default function App() {
             <Button type="primary" href="mailto:gabriel.merces.dev@gmail.com" icon={<MailOutlined />}>{text.contact}</Button>
           </section>
         </main>
-        <footer className="flex flex-col justify-between gap-2 border-t border-[#f0f0f0] py-6 min-[601px]:flex-row min-[601px]:gap-4">
+        <footer className="section-inset flex flex-col justify-between gap-2 border-t border-[#f0f0f0] py-6 min-[601px]:flex-row min-[601px]:gap-4">
           <Typography.Text type="secondary" className="text-xs!">© 2026 Gabriel Mercês</Typography.Text>
           <Typography.Text type="secondary" className="text-xs!">{text.footer}</Typography.Text>
         </footer>

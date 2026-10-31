@@ -1,14 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  /* Shared alignment for header, hero, projects and footer. */
+  /* Outer grid, inner section spacing and the narrower introduction are distinct. */
   --page-content-max: 70rem;
   --page-gutter: clamp(1.25rem, 6vw, 5.5rem);
+  --section-inset: clamp(0.75rem, 2.5vw, 2rem);
+  --section-space: clamp(2.5rem, 5vw, 4.5rem);
+  --hero-content-max: 60rem;
 }
 
 .page-container {
   width: min(calc(100% - 2 * var(--page-gutter)), var(--page-content-max));
   margin-inline: auto;
+}
+
+.section-inset {
+  padding-inline: var(--section-inset);
+}
+
+.hero-layout {
+  max-width: var(--hero-content-max);
+  margin-inline: auto;
+  padding: var(--section-space) var(--section-inset);
+  margin-bottom: calc(var(--section-space) / 2);
+}
+
+.contact-section {
+  margin-top: var(--section-space);
+  padding-block: calc(var(--section-space) * 0.75);
 }
 
 html {

@@ -12,7 +12,7 @@ interface Props {
 export default function ProjectsSection({ text, locale, onSelect }: Props) {
   return (
     <section id="projetos">
-      <div className="mb-6">
+      <div className="section-inset mb-8">
         <Typography.Title level={3} className="!mb-2 !mt-0">{text.projects}</Typography.Title>
         <Typography.Text type="secondary">{text.projectsSub}</Typography.Text>
       </div>
