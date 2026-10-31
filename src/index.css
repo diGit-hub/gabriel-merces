@@ -20,7 +20,7 @@
 
 .project-preview-badges {
   position: absolute;
-  inset: 12px 12px auto;
+  inset: auto 12px 12px;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -29,11 +29,11 @@
 
 .project-preview-badges .project-preview-badge {
   margin: 0;
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 13px;
   font-weight: 600;
-  line-height: 18px;
+  line-height: 20px;
   white-space: normal;
   box-shadow: 0 1px 4px rgb(0 0 0 / 16%);
 }
