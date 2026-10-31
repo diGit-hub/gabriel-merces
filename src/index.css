@@ -18,6 +18,44 @@
   padding-inline: var(--section-inset);
 }
 
+.project-preview-badges {
+  position: absolute;
+  inset: 12px 12px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.project-preview-badges .project-preview-badge {
+  margin: 0;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  white-space: normal;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 16%);
+}
+
+.project-preview-badges .project-preview-badge-inProgress {
+  color: #854d0e;
+  background: #fef3c7;
+  border-color: #fcd34d;
+}
+
+.project-preview-badges .project-preview-badge-aiAssisted {
+  color: #6b21a8;
+  background: #f3e8ff;
+  border-color: #d8b4fe;
+}
+
+.project-preview-badges .project-preview-badge-noAiCode {
+  color: #166534;
+  background: #dcfce7;
+  border-color: #86efac;
+}
+
 .hero-layout {
   max-width: var(--hero-content-max);
   margin-inline: auto;

@@ -15,12 +15,15 @@ interface ProjectContent {
   status: string;
 }
 
+export type ProjectBadge = 'inProgress' | 'aiAssisted' | 'noAiCode';
+
 export interface Project {
   name: string;
   preview: string;
   siteUrl: string;
   repositoryUrl: string;
   privateRepository: boolean;
+  badges: ProjectBadge[];
   stack: string[];
   pt: ProjectContent;
   en: ProjectContent;
@@ -33,6 +36,7 @@ export const projects: Project[] = [
     siteUrl: 'https://fruti-games.vercel.app',
     repositoryUrl: 'https://github.com/diGit-hub/FrutiGames',
     privateRepository: true,
+    badges: ['inProgress', 'aiAssisted'],
     stack: ['React', 'JavaScript', 'Tailwind CSS', 'GamePix API', 'Supabase'],
     pt: {
       type: 'Portal de jogos online',
@@ -61,6 +65,7 @@ export const projects: Project[] = [
     siteUrl: 'https://nando-merces.vercel.app',
     repositoryUrl: 'https://github.com/diGit-hub/nando-merces',
     privateRepository: true,
+    badges: ['aiAssisted'],
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL'],
     pt: {
       type: 'Portfólio de artista e painel administrativo',
@@ -89,6 +94,7 @@ export const projects: Project[] = [
     siteUrl: 'https://weather-merces.vercel.app',
     repositoryUrl: 'https://github.com/diGit-hub/weather-app',
     privateRepository: false,
+    badges: ['aiAssisted'],
     stack: ['React', 'JavaScript', 'Tailwind CSS', 'OpenWeather API'],
     pt: {
       type: 'Clima e previsão do tempo',
@@ -117,6 +123,7 @@ export const projects: Project[] = [
     siteUrl: 'https://shopi-merces.vercel.app',
     repositoryUrl: 'https://github.com/diGit-hub/Shopi',
     privateRepository: false,
+    badges: ['inProgress', 'noAiCode'],
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Axios'],
     pt: {
       type: 'Vitrine de e-commerce',

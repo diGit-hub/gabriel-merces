@@ -22,9 +22,16 @@ export default function ProjectsSection({ text, locale, onSelect }: Props) {
             <Card
               className="flex h-full flex-col overflow-hidden [&>.ant-card-body]:flex-1"
               cover={
-                <button type="button" className="block w-full cursor-pointer border-0 bg-transparent p-0 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#1677ff]" onClick={() => onSelect(index)} aria-label={`${text.view} ${project.name}`}>
-                  <img className="block aspect-video w-full object-cover object-top" src={project.preview} alt={`${project.name} — ${project[locale].type}`} loading="lazy" width={1536} height={864} />
-                </button>
+                <div className="relative">
+                  <button type="button" className="block w-full cursor-pointer border-0 bg-transparent p-0 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#1677ff]" onClick={() => onSelect(index)} aria-label={`${text.view} ${project.name}`}>
+                    <img className="block aspect-video w-full object-cover object-top" src={project.preview} alt={`${project.name} — ${project[locale].type}`} loading="lazy" width={1536} height={864} />
+                  </button>
+                  <div className="project-preview-badges">
+                    {project.badges.map(badge => (
+                      <Tag key={badge} className={`project-preview-badge project-preview-badge-${badge}`}>{text[badge]}</Tag>
+                    ))}
+                  </div>
+                </div>
               }
               actions={[
                 <Button key="case-study" type="link" icon={<ArrowRightOutlined />} onClick={() => onSelect(index)}>{text.view}</Button>,
