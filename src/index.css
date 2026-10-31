@@ -18,42 +18,65 @@
   padding-inline: var(--section-inset);
 }
 
+.project-preview {
+  position: relative;
+  isolation: isolate;
+}
+
+.project-preview::after {
+  content: '';
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(180deg, transparent, rgb(15 23 42 / 12%) 45%, rgb(15 23 42 / 60%));
+  pointer-events: none;
+}
+
 .project-preview-badges {
   position: absolute;
-  inset: auto 12px 12px;
+  z-index: 1;
+  inset: auto 24px 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
   pointer-events: none;
 }
 
 .project-preview-badges .project-preview-badge {
   margin: 0;
-  padding: 4px 12px;
-  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border: 1px solid rgb(255 255 255 / 90%);
+  border-radius: 4px;
   font-size: 13px;
   font-weight: 600;
   line-height: 20px;
-  white-space: normal;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 16%);
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 24%), 0 6px 16px rgb(0 0 0 / 16%);
+}
+
+.project-preview-badges .project-preview-badge .anticon {
+  font-size: 15px;
+}
+
+.project-preview-badges .project-preview-badge .anticon + span {
+  margin-inline-start: 0;
 }
 
 .project-preview-badges .project-preview-badge-inProgress {
-  color: #854d0e;
-  background: #fef3c7;
-  border-color: #fcd34d;
+  color: #422006;
+  background: #facc15;
 }
 
 .project-preview-badges .project-preview-badge-aiAssisted {
-  color: #6b21a8;
-  background: #f3e8ff;
-  border-color: #d8b4fe;
+  color: #fff;
+  background: #6d28d9;
 }
 
 .project-preview-badges .project-preview-badge-noAiCode {
-  color: #166534;
-  background: #dcfce7;
-  border-color: #86efac;
+  color: #fff;
+  background: #15803d;
 }
 
 .hero-layout {

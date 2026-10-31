@@ -1,5 +1,5 @@
 import { Button, Card, Col, Row, Space, Tag, Typography } from 'antd';
-import { ArrowRightOutlined } from '@ant-design/icons';
+import { ArrowRightOutlined, ClockCircleOutlined, CodeOutlined, RobotOutlined } from '@ant-design/icons';
 import type { Copy, Locale } from '../data/content';
 import { projects } from '../data/projects';
 
@@ -8,6 +8,12 @@ interface Props {
   locale: Locale;
   onSelect: (index: number) => void;
 }
+
+const badgeIcons = {
+  inProgress: <ClockCircleOutlined aria-hidden="true" />,
+  aiAssisted: <RobotOutlined aria-hidden="true" />,
+  noAiCode: <CodeOutlined aria-hidden="true" />,
+};
 
 export default function ProjectsSection({ text, locale, onSelect }: Props) {
   return (
@@ -22,13 +28,13 @@ export default function ProjectsSection({ text, locale, onSelect }: Props) {
             <Card
               className="flex h-full flex-col overflow-hidden [&>.ant-card-body]:flex-1"
               cover={
-                <div className="relative">
+                <div className="project-preview">
                   <button type="button" className="block w-full cursor-pointer border-0 bg-transparent p-0 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#1677ff]" onClick={() => onSelect(index)} aria-label={`${text.view} ${project.name}`}>
                     <img className="block aspect-video w-full object-cover object-top" src={project.preview} alt={`${project.name} — ${project[locale].type}`} loading="lazy" width={1536} height={864} />
                   </button>
                   <div className="project-preview-badges">
                     {project.badges.map(badge => (
-                      <Tag key={badge} className={`project-preview-badge project-preview-badge-${badge}`}>{text[badge]}</Tag>
+                      <Tag key={badge} icon={badgeIcons[badge]} className={`project-preview-badge project-preview-badge-${badge}`}>{text[badge]}</Tag>
                     ))}
                   </div>
                 </div>
