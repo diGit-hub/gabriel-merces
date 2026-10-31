@@ -59,7 +59,7 @@ export default function App() {
           <Hero text={text} />
           <ProjectsSection text={text} locale={locale} onSelect={setSelectedProject} />
           <section id="contato" className="constellation-section section-inset contact-section flex flex-col items-start justify-between gap-6 border-t border-[#f0f0f0] min-[801px]:flex-row min-[801px]:items-center">
-            <ConstellationBackground />
+            <ConstellationBackground seed={41} />
             <div>
               <Typography.Title level={3} className="m-0!">{text.cta}</Typography.Title>
               <Typography.Paragraph type="secondary" className="mb-0! mt-2!">{text.ctaText}</Typography.Paragraph>
