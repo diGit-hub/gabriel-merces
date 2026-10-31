@@ -2,26 +2,25 @@ import { useState } from 'react';
 import { Button, Collapse, Modal, Space, Tabs, Tooltip, Typography } from 'antd';
 import { ExportOutlined, GithubOutlined } from '@ant-design/icons';
 import type { Copy, Locale } from '../data/content';
-import { previews, technology } from '../data/projects';
+import { technology } from '../data/projects';
 import type { Project } from '../data/projects';
 
 interface Props {
   project: Project;
-  index: number;
   locale: Locale;
   text: Copy;
   onClose: () => void;
 }
 
-export default function ProjectModal({ project, index, locale, text, onClose }: Props) {
+export default function ProjectModal({ project, locale, text, onClose }: Props) {
   const [tab, setTab] = useState('case');
   const content = project[locale];
   const sections = [
     [text.problem, content.problem],
-    [text.roleLabel, text.roleText],
+    [text.roleLabel, content.role],
     [text.choices, content.choices],
     [text.result, content.result],
-    [text.next, text.nextText],
+    [text.next, content.next],
   ];
 
   return (
@@ -29,16 +28,22 @@ export default function ProjectModal({ project, index, locale, text, onClose }: 
       open onCancel={onClose} title={`${project.name} — ${content.type}`} width={900}
       footer={
         <div className="flex flex-col items-start justify-between gap-6 text-left min-[801px]:flex-row min-[801px]:items-center">
-          <Typography.Text type="secondary" className="max-w-80 !text-[11px]">{text.mock}</Typography.Text>
+          <Typography.Text type="secondary" className="max-w-80 !text-[11px]">{content.status}</Typography.Text>
           <Space wrap>
-            <Tooltip title={text.mock}><Button disabled icon={<GithubOutlined />}>{text.repo}</Button></Tooltip>
-            <Tooltip title={text.mock}><Button type="primary" disabled icon={<ExportOutlined />}>{text.site}</Button></Tooltip>
+            {project.privateRepository ? (
+              <Tooltip title={text.privateRepoHelp}>
+                <span><Button disabled icon={<GithubOutlined />}>{text.privateRepo}</Button></span>
+              </Tooltip>
+            ) : (
+              <Button href={project.repositoryUrl} target="_blank" rel="noopener noreferrer" icon={<GithubOutlined />}>{text.repo}</Button>
+            )}
+            <Button type="primary" href={project.siteUrl} target="_blank" rel="noopener noreferrer" icon={<ExportOutlined />}>{text.site}</Button>
             <Button onClick={onClose}>{text.close}</Button>
           </Space>
         </div>
       }
     >
-      <img src={previews[index]} alt={project.name} className="mt-4 block w-full rounded-md" />
+      <img src={project.preview} alt={`${project.name} — ${content.type}`} className="mt-4 block w-full rounded-md" />
       <Tabs activeKey={tab} onChange={setTab} items={[
         {
           key: 'case', label: text.case,

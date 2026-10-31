@@ -1,7 +1,7 @@
 import { Button, Card, Col, Row, Space, Tag, Typography } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import type { Copy, Locale } from '../data/content';
-import { previews, projects } from '../data/projects';
+import { projects } from '../data/projects';
 
 interface Props {
   text: Copy;
@@ -18,12 +18,12 @@ export default function ProjectsSection({ text, locale, onSelect }: Props) {
       </div>
       <Row gutter={[24, 24]}>
         {projects.map((project, index) => (
-          <Col xs={24} md={12} lg={8} key={project.name}>
+          <Col xs={24} md={12} key={project.name}>
             <Card
               className="flex h-full flex-col overflow-hidden [&>.ant-card-body]:flex-1"
               cover={
                 <button type="button" className="block w-full cursor-pointer border-0 bg-transparent p-0 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#1677ff]" onClick={() => onSelect(index)} aria-label={`${text.view} ${project.name}`}>
-                  <img className="block h-auto w-full" src={previews[index]} alt={`${project.name} — ${project[locale].type}`} />
+                  <img className="block aspect-video w-full object-cover object-top" src={project.preview} alt={`${project.name} — ${project[locale].type}`} loading="lazy" width={1536} height={864} />
                 </button>
               }
               actions={[

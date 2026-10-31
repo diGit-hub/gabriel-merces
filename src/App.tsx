@@ -71,7 +71,7 @@ export default function App() {
         </footer>
       </div>
       {selectedProject !== null && (
-        <ProjectModal key={projects[selectedProject].name} project={projects[selectedProject]} index={selectedProject} locale={locale} text={text} onClose={() => setSelectedProject(null)} />
+        <ProjectModal key={projects[selectedProject].name} project={projects[selectedProject]} locale={locale} text={text} onClose={() => setSelectedProject(null)} />
       )}
     </ConfigProvider>
   );
